@@ -3,6 +3,7 @@ package cl.inacap.rcivilControllers;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import javax.inject.Inject;
 import javax.servlet.RequestDispatcher;
@@ -43,15 +44,28 @@ public class IngresarSolicitudController extends HttpServlet {
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * 
 	 */
+	
+	//DECLARAMOS LA VARIABLE ATOMICINTEGER 
+	AtomicInteger atencion = new AtomicInteger(001);
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		List<String> errores = new ArrayList<String>();
 		
+		//VALIDACION DE FORMULARIO
+		
 		String nombre = request.getParameter("nombre-txt");
-		if(nombre.isEmpty()) {
+		if(!nombre.isEmpty()) {
+			if(!nombre.trim().contains(" ")) {
+				errores.add("El Nombre debe contener un espacio que separe el Apellido");
+			}
+		}else {
 			errores.add("Debe Ingresar el Nombre en un Formato Correcto");
 		}
+
+		
 		String tipo = request.getParameter("tipo-select");
 		if(tipo.isEmpty()) {
 			errores.add("Selecciones una Solicitud Válida");
@@ -134,6 +148,12 @@ public class IngresarSolicitudController extends HttpServlet {
 				errores.add("Debe Ingresar un Rut Válido");
 			}
 		}
+		
+		//NUMERO DE SOLICITUD AUTOMATICO UTILIZANDO ATOMICINTEGER LO OBTIENE DESDE LA VARIABLE ATENCION DECLARA FUERA DEL METODO POST 
+		//LUEGO LA INCREMENTA EN 1
+		int numAtencion = atencion.getAndAdd(1);
+		s.setNumAtencion(numAtencion);
+		
 		
 		if(errores.isEmpty()) {
 			solicitudesDAO.save(s);

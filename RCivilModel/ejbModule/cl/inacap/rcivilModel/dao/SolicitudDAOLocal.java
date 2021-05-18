@@ -15,7 +15,5 @@ public interface SolicitudDAOLocal {
 	List<Solicitud> getAll();
 	void delete(Solicitud solicitud);
 	List<Solicitud>filterByName(String nombre);
-	List<Solicitud>filterByType(String tipo);
-	
 	
 }

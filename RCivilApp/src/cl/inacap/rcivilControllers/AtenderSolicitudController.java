@@ -1,6 +1,7 @@
 package cl.inacap.rcivilControllers;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -36,6 +37,7 @@ public class AtenderSolicitudController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		
 		if(request.getParameter("EliminarAtender") != null) {
 			String nombre = request.getParameter("EliminarAtender".trim());
 			List<Solicitud> busqueda = solicitudesDAO.filterByName(nombre);
@@ -46,15 +48,32 @@ public class AtenderSolicitudController extends HttpServlet {
 			}
 		}
 		
-		
 		List<Solicitud> solicitudes = solicitudesDAO.getAll();
+		List<Solicitud> solicitudesFiltradas =  new ArrayList<Solicitud>();
 		
-		request.setAttribute("solicitudes", solicitudes);
+		if(request.getParameter("filtro-select") != null) {
+	
+			System.out.println("Entrando a Filtro");
+			
+			for(Solicitud solicitudTemp : solicitudes) {
+				if(request.getParameter("filtro-select").equalsIgnoreCase(solicitudTemp.getTipo())) {
+					solicitudesFiltradas.add(solicitudTemp);
+					System.out.println("Se agregó una solicitud filtrada");
+				}
+			}
+			System.out.println("Salimos del filtro");
+			
+			request.setAttribute("solicitudes", solicitudesFiltradas);
+		}else {
+			request.setAttribute("solicitudes", solicitudes);
+		}
 		
 		
 		request.getRequestDispatcher("WEB-INF/vistas/atenderSolicitud.jsp").forward(request, response);
 		
 	}
+
+	
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

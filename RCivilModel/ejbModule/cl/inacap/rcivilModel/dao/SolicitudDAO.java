@@ -42,14 +42,6 @@ public class SolicitudDAO implements SolicitudDAOLocal {
 		solicitudes.remove(solicitud);
 	}
 
-	@Override
-	public List<Solicitud> filterByType(String tipo) {
-		
-		//TENEMOS UN STREAM QUE RECORRE LA LISTA SOLICITUDES, FILTRA OBTENIENDO EL TIPO Y COMPARANDOLO CON EL TIPO RECIBIDO, SI ES QUE LO CONTIENE, SE AGREGA 
-		// A UNA COLECCION.
-		
-		return solicitudes.stream().filter(s->s.getTipo().toLowerCase().contains(tipo.toLowerCase())).collect(Collectors.toList());
-	}
 
 	@Override
 	public List<Solicitud> filterByName(String nombre) {

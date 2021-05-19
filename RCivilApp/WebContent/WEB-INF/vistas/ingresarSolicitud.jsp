@@ -66,6 +66,13 @@
 								</div>
 							</div>
 						</div>
+						<!-- NUMERO DE SOLICITUD , PEDIDO SOLO CUANDO SE EL RETIRO DE LA CEDULA -->
+						<div class="field">
+							<label class="label" for="numero-txt">Número de Solicitud Realizada</label>
+							<div class="control">
+								<input class="input has-text-centered" type="text" name="numero-txt" id="numero-txt" placeholder="Numero de Solicitud Realizada">
+							</div>
+						</div>
 					</div>
 					<!-- FOOTER PARA ALOJAR EL BOTON -->
 					<div class="card-footer has-text-centered">

@@ -15,6 +15,7 @@
 					<label class="label">Tipo de Solicitud</label>
 					<div class="select">
 						<select name="filtro-select" id="filtro-select">
+							<option>Todas</option>
 							<option>Solicitud de Cedula de Identidad</option>
 							<option>Retiro de Cedula de Identidad</option>
 							<option>Solicitud de Certificado de Nacimiento</option>	

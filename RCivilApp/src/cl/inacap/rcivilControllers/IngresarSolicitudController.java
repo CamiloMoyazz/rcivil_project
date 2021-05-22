@@ -82,7 +82,7 @@ public class IngresarSolicitudController extends HttpServlet {
 			}
 		}
 
-		// VALIDACION SI LA SOLICITUD NO
+		// SE CREA LA SOLICITUD Y SETTEAMOS LOS PRIMEROS 2 ATRIBUTOS
 		Solicitud s = new Solicitud();
 		s.setNombre(nombre);
 		s.setTipo(tipo);
@@ -91,9 +91,6 @@ public class IngresarSolicitudController extends HttpServlet {
 		if (rut.isEmpty()) {
 			errores.add("Debe Ingresar un Rut");
 		} else {
-			
-			
-			
 //-----------------              VERIFICACION  SI EL RUT ES VALIDO               --------------------------------------------------------- //			
 			try {
 				// ELIMINARMOS CUALQUIER CARACTER QUE NO NOS IMPORTE
@@ -103,7 +100,6 @@ public class IngresarSolicitudController extends HttpServlet {
 
 				// INVERTIMOS LA CADENA PARA PODER EMPEZAR A MULTIPLICAR DESDE EL ULTIMO DIGITO
 				// PERO PRIMERO VALIDAMOS SI EL RUT COMIENZA SOLO CON 1 DIGITO
-				System.out.println(rut.length());
 				if (rut.length() > 8) {
 					String rutVerificado = rut.substring(0, 8);
 					char verificador = rut.charAt(8);
@@ -235,7 +231,7 @@ public class IngresarSolicitudController extends HttpServlet {
 		if (errores.isEmpty()) {
 
 			// NUMERO DE SOLICITUD AUTOMATICO UTILIZANDO ATOMICINTEGER LO OBTIENE DESDE LA
-			// VARIABLE ATENCION DECLARA FUERA DEL METODO POST
+			// VARIABLE ATENCION DECLARADA FUERA DEL METODO POST
 			// LUEGO LA INCREMENTA EN 1
 			int numAtencion = atencion.getAndAdd(1);
 			s.setNumAtencion(numAtencion);

@@ -70,7 +70,7 @@
 						<div class="field">
 							<label class="label" for="numero-txt">Número de Solicitud Realizada</label>
 							<div class="control">
-								<input class="input has-text-centered" type="text" name="numero-txt" id="numero-txt" placeholder="Numero de Solicitud Realizada">
+								<input class="input has-text-centered" type="number" name="numero-txt" id="numero-txt" placeholder="Numero de Solicitud Realizada">
 							</div>
 						</div>
 					</div>

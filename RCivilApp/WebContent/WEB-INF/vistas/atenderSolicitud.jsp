@@ -12,7 +12,7 @@
 			<div class="column is-6 mt-5">
 			<form action="AtenderSolicitudController.do">
 				<div class="field">
-					<label class="label">Tipo de Solicitud</label>
+					<label class="label">Filtrar por Tipo de Solicitud</label>
 					<div class="select">
 						<select name="filtro-select" id="filtro-select">
 							<option>Todas</option>
